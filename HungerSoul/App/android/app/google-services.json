@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "875993085029",
+    "project_id": "hungersoul-7a15a",
+    "storage_bucket": "hungersoul-7a15a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875993085029:android:99f24ff7a124a2468b428c",
+        "android_client_info": {
+          "package_name": "com.example.food_donation_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875993085029-qrv6fmdvoa161vq8ok50vh8i8pp2tf1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoqkvrEf3A_3dj3ILJY3lwiN0yNYq-lhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875993085029-qrv6fmdvoa161vq8ok50vh8i8pp2tf1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

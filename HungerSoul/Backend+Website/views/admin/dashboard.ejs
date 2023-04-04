@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADMIN PORTAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+</head>
+
+<body>
+    <%- include('nav.ejs')  %>
+    <div class="row top-container">
+        <div class="col-1 side-bar">
+            <div class="row r-button">
+                <a href="/admin/dashboard/register"><button class="button-27" id="btn-1" role="button">Register Emergency Service</button></a>
+            </div>
+            <div class="row r-button">
+                <a href=""></a><button class="button-27" id="btn-2" role="button">Verify Emergency Service</button></a>
+            </div> 
+        </div>
+        <div class="sidenav">
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/dashboard/inventory">Inventory</a>
+            <a href="#">Donations</a>
+            <a href="#">Volunteers</a>
+            <a href="/admin/dashboard/QRgenerator">QR Generator</a>
+            <a href="/admin/dashboard/feedpost">Feed Post</a>
+        </div>
+        
+        <div class="col" style="padding-top: 70px; padding-left: 60px;">
+            <div class="row" style="margin-top: 50px; padding: 0 70px; ">
+                <div class="col-6">
+                  <div class="dashboard-metrics">
+                    <h2>Donation Metrics</h2>
+                    <div class="metrics-container">
+                      <div class="metric">
+                        <span class="metric-value">1000</span>
+                        <span class="metric-label">Donations Received</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-value">5000</span>
+                        <span class="metric-label">Food Donated (in pounds)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                    <div class="dashboard-metrics">
+                        <h2>Volunteer Engagement</h2>
+                        <div class="metrics-container">
+                          <div class="metric">
+                            <span class="metric-value">100</span>
+                            <span class="metric-label">Active Volunteers</span>
+                          </div>
+                          <div class="metric">
+                            <span class="metric-value">50%</span>
+                            <span class="metric-label">Volunteer Participation</span>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            
+              
+                            
+
+            <div class="row" style="text-align: center; width: 95%; margin: 20px auto;">
+                <div class="div table1">
+                    <h3>Donor's Donation Call List:</h3>
+                    <table id="example" class="display table_id">
+                        <thead>
+                            <tr>
+                                <th>Donation ID</th>
+                                <th scope="col">DONOR NAME</th>
+                                <th scope="col">FOOD</th>
+                                <th scope="col">QUANTITY</th>
+                                <th scope="col">BEST BEFORE</th>
+                                <th scope="col">PHONE NO.</th>
+                                <th scope="col">ADDRESS</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (food.length > 0) {
+                                 for (let foo of food) { %>
+                            <tr>
+                                <td scope="col"><%- foo.id %></td>
+                                <td scope="col"><%- foo.donorname %></td>
+                                <td scope="col"><%- foo.food %></td>
+                                <td scope="col"><%- foo.quantity %></td>
+                                <td scope="col"><%- foo.bestbefore %></td>
+                                <td scope="col"><%- foo.phone %></td>
+                                <td scope="col"><%- foo.address %></td>
+                            </tr>
+                            <% } } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script>
+        
+        $(window).on('load',()=>{
+            //console.log('hi');
+            $.ajax({
+                url: "../admin/gethospicount",
+                type: "POST",
+                success: function(res){
+                   $("#hospt-cnt").html(`${res.response}`);
+                  }
+                }); 
+        })
+        $(window).on('load',()=>{
+            //console.log('hi');
+            $.ajax({
+                url: "../admin/getpolicecount",
+                type: "POST",
+                success: function(res){
+                   $("#police-cnt").html(`${res.response}`);
+                  }
+                }); 
+        })
+        $(window).on('load',()=>{
+            //console.log('hi');
+            $.ajax({
+                url: "../admin/getusercount",
+                type: "POST",
+                success: function(res){
+                   $("#user-cnt").html(`${res.response}`);
+                  }
+                }); 
+        })
+            
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.table_id').DataTable();
+        });
+    </script>
+    
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <!-- <script src="/js/admin-dashboard"></script> -->
+</body>
+
+</html>
